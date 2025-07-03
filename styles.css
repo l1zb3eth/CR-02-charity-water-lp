@@ -1,20 +1,17 @@
 /* charity: water Brand Colors & Fonts
 
 Primary Colors:
-- Yellow:     #FFC907
-- Blue:       #2E9DF7
-
-Secondary Colors:
-- Light Blue: #8BD1CB
-- Green:      #4FCB53
-- Orange:     #FF902A
-- Red:        #F5402C
-- Dark Green: #159A48
-- Pink:       #F16061
+--yellow: #FCC931;
+--blue-gray: #77A8BB;
+--black: #1a1a1a;
+--orange: #bf6c46;
+--navy: #003366;
+--gray: #cbccd1;
 
 Fonts:
 - Proxima Nova
-- Avenir
+- Tinos
+- Open Sans
 
 */
 
@@ -25,7 +22,7 @@ Fonts:
 
 /* Set up the main font and background color for the whole page */
 body {
-  background-color: #f4f8fb; /* Soft light blue for a fresh look */
+  background-color: #77A8BB; /* Soft light blue for a fresh look */
   font-family: 'Avenir', 'Proxima Nova', Arial, sans-serif;
   margin: 0;
   padding: 0;
@@ -93,7 +90,7 @@ h2 {
 
 /* Call-to-Action Section Styles */
 .call-to-action {
-  background-color: #FFC907; /* Primary Yellow */
+  background-color: #FCC931; /* Primary Yellow */
   color: #222;
   text-align: center;
   padding: 30px 20px;
