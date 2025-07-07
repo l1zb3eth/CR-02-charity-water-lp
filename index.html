@@ -4,10 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Charity: Water Landing Page</title>
+    <!-- Add Google Fonts link for Montserrat -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:700,600&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
-            font-family: 'Proxima Nova', Tinos, Open Sans;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Use Montserrat for all headings and subheadings */
+        h1, h2, h3 {
+            font-family: 'Montserrat', Arial, sans-serif;
         }
 
         .logo {
@@ -24,14 +31,17 @@
             margin-right: 10px;
         }
 
+        /* Set the background color for both main sections */
         .container {
             display: flex;
             flex-direction: row;
             height: 100vh;
+            background-color: #77A8BB; /* Added background color */
+            border-bottom: 2px solid #000; /* Black border line to separate sections */
         }
 
         .hero {
-            background-color: #6b9cab;
+            background-color: #77A8BB; /* Changed background color */
             flex: 1;
             display: flex;
             flex-direction: column;
@@ -76,204 +86,205 @@
             object-fit: cover;
         }
 
-        /* Popup styles */
-        #popup {
+        .popup {
             display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+            width: 300px;
+        }
+
+        .popup input {
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .popup button {
+            width: 100%;
+            padding: 10px;
+            background-color: #ffd000;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .popup button:hover {
+            background-color: #fcbf00;
+        }
+
+        .overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 999;
         }
 
-        .popup-content {
-            background: #cbccd1;
-            color: #111;
-            padding: 20px;
-            border-radius: 8px;
-            max-width: 300px;
-            margin: 100px auto;
-            position: relative;
-        }
-
-        .close-button {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: none;
-            border: none;
-            font-size: 1.2em;
-            cursor: pointer;
-        }
-
-        .popup-content h2 {
-            font-size: 1.2em;
-            margin-bottom: 15px;
-        }
-
-        .popup-content label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .popup-content input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        .popup-content button[type="submit"] {
-            background-color: #6b9cab;
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
-
-        .popup-content button[type="submit"]:hover {
-            background-color: #5a8b9c;
-        }
-
-        /* Mission section styles */
-        .mission-section {
-            background: #fff;
-            padding: 30px 20px;
-            margin: 30px auto;
-            max-width: 700px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-
-        .mission-section h2 {
-            text-align: center;
-            color: #2E9DF7;
-        }
-
-        .mission-section p {
-            font-size: 1.1em;
-            text-align: center;
-        }
-
-        /* New styles for the two-column mission section */
-        .mission-row {
+        /* Mission and Map Section background color */
+        .mission-map {
             display: flex;
-            flex-direction: row;
-            justify-content: space-between;
+            justify-content: space-around;
+            align-items: center;
+            background-color: #77A8BB; /* Changed background color */
+            padding: 60px 40px;
+            color: #111;
             flex-wrap: wrap;
         }
 
-        .mission-col {
+        .mission, .map {
             flex: 1;
-            padding: 10px;
-            min-width: 250px; /* Ensures columns don't get too narrow */
+            max-width: 500px;
+            text-align: center;
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .mission-row {
-                flex-direction: column;
+        .mission h2, .map h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .mission p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .map img {
+            width: 100%;
+            height: auto;
+            max-width: 450px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .divider {
+            width: 2px;
+            height: 250px;
+            background-color: #111;
+            margin: 0 30px;
+        }
+
+        /* Make the main sections responsive for smaller screens */
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column; /* Stack hero and image vertically */
+                height: auto; /* Let height grow as needed */
+            }
+            .hero, .image-section {
+                padding: 20px; /* Less padding on small screens */
+            }
+            .image-section img {
+                height: 250px; /* Set a fixed height for images on small screens */
+            }
+        }
+
+        @media (max-width: 600px) {
+            .logo {
+                padding: 10px 15px; /* Smaller padding for logo */
+                font-size: 1rem;
+            }
+            .hero h1 {
+                font-size: 2rem; /* Smaller heading */
+            }
+            .mission-map {
+                flex-direction: column; /* Stack mission and map vertically */
+                padding: 20px 10px;
+            }
+            .divider {
+                display: none; /* Hide divider on small screens */
+            }
+            .map img {
+                max-width: 100%;
+                height: auto;
             }
         }
     </style>
 </head>
 <body>
     <div class="logo">
-        <!-- Logo image from the img folder -->
-        <img src="img/cw_logo-2.png" alt="charity: water logo">
-        <!-- Logo text -->
+        <!-- Use a local image for the logo. The image is in the 'img' folder. -->
+        <img src="img/cw_logo-2.png" alt="logo">
     </div>
     <div class="container">
         <section class="hero">
             <h1>Hope Starts With You</h1>
             <p>From your donation to a family’s first clean drink, you’ll witness real change—because even a small gift can spark a ripple of hope that lasts a lifetime</p>
-            <!-- Donation Button -->
-            <button class="donate-button" onclick="showPopup()">Make Donation</button>
-
-            <!-- Popup Form (hidden by default) -->
-            <div id="popup">
-                <div class="popup-content">
-                    <!-- Close button -->
-                    <button class="close-button" onclick="hidePopup()">X</button>
-                    <h2>Donation Form</h2>
-                    <!-- Simple donation form -->
-                    <form id="donationForm">
-                        <!-- Name input -->
-                        <label for="name">Name:</label>
-                        <input type="text" id="name" name="name" required>
-                        <!-- Email input -->
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" required>
-                        <!-- Donation amount input -->
-                        <label for="amount">Donation Amount:</label>
-                        <input type="number" id="amount" name="amount" required>
-                        <!-- Submit button -->
-                        <button type="submit">Donate</button>
-                    </form>
-                    <!-- Success message, hidden at first -->
-                    <p id="successMessage" style="display:none; color:black; font-weight:bold; margin-top:10px; text-align:center;">
-                        Donation successful!
-                    </p>
-                </div>
-            </div>
+            <button class="donate-button" onclick="openPopup()">Make Donation</button>
         </section>
         <div class="image-section">
-            <!-- Show the water.png image from your project folder -->
+            <!-- Use a local image for the hero section. The image is in the 'img' folder. -->
             <img src="img/water.png" alt="Girl drinking clean water">
         </div>
     </div>
 
-    <!-- Our Mission Section with two columns -->
-    <section class="mission-section">
-        <div class="mission-row" style="justify-content: space-between;">
-            <!-- Left side: Our Story -->
-            <div class="mission-col" style="text-align: right;">
-                <!-- Section heading -->
-                <h2>Our Story</h2>
-                <!-- Section text -->
-                <p>
-                    Our mission is to bring clean and safe drinking water to people in developing countries. We believe everyone deserves access to clean water, and together we can make a difference—one community at a time.
-                </p>
-            </div>
-            <!-- Right side: Donation Map -->
-            <div class="mission-col" style="text-align: right;">
-                <!-- Section heading -->
-                <h2>Donation Map</h2>
-                <!-- Section text or placeholder for map -->
-                <p>
-                    See where donations are making a difference around the world!
-                </p>
-                <!-- Placeholder image for map (students can replace with a real map later) -->
-                <img src="img/map-placeholder.png" alt="Donation Map" style="width:100%; max-width:250px; border-radius:8px;">
-            </div>
+    <div class="overlay" id="overlay" onclick="closePopup()"></div>
+    <div class="popup" id="donationPopup">
+        <h3>Donate Now</h3>
+        <!-- Name input -->
+        <input type="text" placeholder="Your Name">
+        <!-- Email input -->
+        <input type="email" placeholder="Your Email">
+        <!-- Donation amount input -->
+        <input type="number" placeholder="Donation Amount ($)">
+        <!-- Credit card number input -->
+        <input type="text" placeholder="Credit Card Number">
+        <!-- Expiration date input -->
+        <input type="text" placeholder="Expiration Date (MM/YY)">
+        <!-- CVV input -->
+        <input type="text" placeholder="CVV">
+        <!-- Submit button -->
+        <button onclick="submitDonation()">Submit</button>
+        <!-- Thank you message (hidden by default) -->
+        <div id="thankYouMessage" style="display:none; color: #003366; text-align: center; margin-top: 15px;">
+            Thank you for your donation!
+        </div>
+    </div>
+
+    <script>
+        function openPopup() {
+            document.getElementById('donationPopup').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+            // Hide thank you message when popup opens
+            document.getElementById('thankYouMessage').style.display = 'none';
+        }
+
+        function closePopup() {
+            document.getElementById('donationPopup').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+
+        function submitDonation() {
+            // Show thank you message
+            document.getElementById('thankYouMessage').style.display = 'block';
+            // Optionally, you can hide the popup after a short delay
+            setTimeout(closePopup, 1500); // Closes popup after 1.5 seconds
+        }
+    </script>
+
+    <!-- Mission and Map Section -->
+    <section class="mission-map">
+        <div class="mission">
+            <h2>Our Mission</h2>
+            <p>Our mission is to bring clean and safe drinking water to people in developing countries. We believe everyone deserves access to clean water, and together we can make a difference—one community at a time.</p>
+        </div>
+        <div class="divider"></div>
+        <div class="map">
+            <h2>Donation Map</h2>
+            <!-- Use a local image for the donation map. The image is in the 'img' folder. -->
+            <img src="img/map.png" alt="Donation Map" />
         </div>
     </section>
 
-    <!-- Add this script at the end of your body -->
-    <script>
-      // Show the popup
-      function showPopup() {
-        document.getElementById('popup').style.display = 'block';
-        // Hide the success message and show the form again if opened again
-        document.getElementById('successMessage').style.display = 'none';
-        document.getElementById('donationForm').style.display = 'block';
-      }
-      // Hide the popup
-      function hidePopup() {
-        document.getElementById('popup').style.display = 'none';
-      }
-
-      // This code runs when the page is ready
-      // It makes the form show "Donation successful!" instead of submitting
-      document.getElementById('donationForm').onsubmit = function(event) {
-        event.preventDefault(); // Stop the form from submitting
-        document.getElementById('donationForm').style.display = 'none'; // Hide the form
-        document.getElementById('successMessage').style.display = 'block'; // Show the message
-      };
-    </script>
 </body>
 </html>
