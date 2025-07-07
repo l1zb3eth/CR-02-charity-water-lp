@@ -245,18 +245,18 @@
         <input type="text" placeholder="CVV">
         <!-- Submit button -->
         <button onclick="submitDonation()">Submit</button>
-        <!-- Thank you message (hidden by default) -->
-        <div id="thankYouMessage" style="display:none; color: #003366; text-align: center; margin-top: 15px;">
-            Thank you for your donation!
-        </div>
+    </div>
+
+    <!-- Add a new popup for the thank you message, right after the donationPopup div -->
+    <div class="popup" id="thankYouPopup" style="display:none;">
+        <h3 style="text-align:center; color:#003366;">Thank you for your donation!</h3>
+        <button onclick="closeThankYouPopup()">Close</button>
     </div>
 
     <script>
         function openPopup() {
             document.getElementById('donationPopup').style.display = 'block';
             document.getElementById('overlay').style.display = 'block';
-            // Hide thank you message when popup opens
-            document.getElementById('thankYouMessage').style.display = 'none';
         }
 
         function closePopup() {
@@ -264,11 +264,16 @@
             document.getElementById('overlay').style.display = 'none';
         }
 
+        // Show thank you popup and hide donation popup
         function submitDonation() {
-            // Show thank you message
-            document.getElementById('thankYouMessage').style.display = 'block';
-            // Optionally, you can hide the popup after a short delay
-            setTimeout(closePopup, 1500); // Closes popup after 1.5 seconds
+            document.getElementById('donationPopup').style.display = 'none';
+            document.getElementById('thankYouPopup').style.display = 'block';
+        }
+
+        // Close thank you popup and overlay
+        function closeThankYouPopup() {
+            document.getElementById('thankYouPopup').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
         }
     </script>
 
