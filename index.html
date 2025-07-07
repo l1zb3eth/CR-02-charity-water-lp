@@ -88,7 +88,8 @@
         }
 
         .popup-content {
-            background: white;
+            background: #cbccd1;
+            color: #111;
             padding: 20px;
             border-radius: 8px;
             max-width: 300px;
@@ -137,6 +138,47 @@
         .popup-content button[type="submit"]:hover {
             background-color: #5a8b9c;
         }
+
+        /* Mission section styles */
+        .mission-section {
+            background: #fff;
+            padding: 30px 20px;
+            margin: 30px auto;
+            max-width: 700px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .mission-section h2 {
+            text-align: center;
+            color: #2E9DF7;
+        }
+
+        .mission-section p {
+            font-size: 1.1em;
+            text-align: center;
+        }
+
+        /* New styles for the two-column mission section */
+        .mission-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .mission-col {
+            flex: 1;
+            padding: 10px;
+            min-width: 250px; /* Ensures columns don't get too narrow */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .mission-row {
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 <body>
@@ -173,7 +215,7 @@
                         <button type="submit">Donate</button>
                     </form>
                     <!-- Success message, hidden at first -->
-                    <p id="successMessage" style="display:none; color:green; font-weight:bold; margin-top:10px;">
+                    <p id="successMessage" style="display:none; color:black; font-weight:bold; margin-top:10px; text-align:center;">
                         Donation successful!
                     </p>
                 </div>
@@ -184,6 +226,32 @@
             <img src="img/water.png" alt="Girl drinking clean water">
         </div>
     </div>
+
+    <!-- Our Mission Section with two columns -->
+    <section class="mission-section">
+        <div class="mission-row" style="justify-content: space-between;">
+            <!-- Left side: Our Story -->
+            <div class="mission-col" style="text-align: right;">
+                <!-- Section heading -->
+                <h2>Our Story</h2>
+                <!-- Section text -->
+                <p>
+                    Our mission is to bring clean and safe drinking water to people in developing countries. We believe everyone deserves access to clean water, and together we can make a difference—one community at a time.
+                </p>
+            </div>
+            <!-- Right side: Donation Map -->
+            <div class="mission-col" style="text-align: right;">
+                <!-- Section heading -->
+                <h2>Donation Map</h2>
+                <!-- Section text or placeholder for map -->
+                <p>
+                    See where donations are making a difference around the world!
+                </p>
+                <!-- Placeholder image for map (students can replace with a real map later) -->
+                <img src="img/map-placeholder.png" alt="Donation Map" style="width:100%; max-width:250px; border-radius:8px;">
+            </div>
+        </div>
+    </section>
 
     <!-- Add this script at the end of your body -->
     <script>
